@@ -1,1 +1,16 @@
-<p-calendar [(ngModel)]="value"></p-calendar>
+<div class="vertical-container">
+    <div class="wrapper">
+        <div class="p-mx-auto p-inputgroup p-mb-3" style="width:300px">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" pInputText placeholder="Username">
+        </div>
+        <div class="p-mx-auto p-inputgroup p-mb-3" style="width:300px">
+            <span class="p-inputgroup-addon"><i class="pi pi-ellipsis-h"></i></span>
+            <input type="password" pInputText placeholder="Password">
+        </div>
+        <div>
+            <button pButton pRipple type="button" label="Login" icon="pi pi-lock" iconPos="left"
+                class="p-d-block p-mx-auto"></button>
+        </div>
+    </div>
+</div>

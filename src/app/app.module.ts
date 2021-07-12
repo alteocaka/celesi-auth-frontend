@@ -6,7 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {CalendarModule} from 'primeng/calendar';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {CheckboxModule} from 'primeng/checkbox';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {RippleModule} from 'primeng/ripple';
+import {TabViewModule} from 'primeng/tabview';
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -15,9 +20,13 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CalendarModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InputTextModule,
+		// CheckboxModule,
+		ButtonModule,
+		RadioButtonModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
