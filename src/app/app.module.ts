@@ -8,10 +8,9 @@ import { AppComponent } from './app.component';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
-import {CheckboxModule} from 'primeng/checkbox';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {RippleModule} from 'primeng/ripple';
-import {TabViewModule} from 'primeng/tabview';
+import { PasswordModule } from "primeng/password";
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -23,10 +22,10 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     BrowserAnimationsModule,
     InputTextModule,
-		// CheckboxModule,
 		ButtonModule,
 		RadioButtonModule,
     RippleModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
