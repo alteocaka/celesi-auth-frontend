@@ -11,19 +11,17 @@ export class AuthService {
 
   private readonly API = environment.api;
 
+  currentUserValue:any = localStorage.getItem('currentUser');
+
   login(username: string, password: string) {
     return this.http
       .post(`${this.API}/auth/login`, { username, password })
-      .subscribe((token: any) => {
-        console.log(token.access_token);
-        localStorage.setItem('access_token', JSON.stringify(token.access_token));
-        this.router.navigateByUrl('');
-        return token;
+      .subscribe((user: any) => {
+        console.log(user);
+        localStorage.setItem('currentUser', (user.access_token));
+        this.router.navigateByUrl('/');
+        console.log(localStorage.getItem('currentUser'));
+        return user;
       });
-  }
-
-  logout() {
-    localStorage.removeItem('access_token');
-    // localStorage.removeItem("expires_at");
   }
 }

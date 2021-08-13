@@ -1,1 +1,82 @@
-<p>This will be the home page</p>
+<p-sidebar [(visible)]="display">
+  <button
+    (click)="logout()"
+    pButton
+    pRipple
+    type="button"
+    label="Logout"
+    class="p-button-raised"
+    icon="pi pi-user"
+  ></button
+  ><br /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Admin"
+    class="p-button-raised p-button-info"
+    icon="pi pi-chart-bar"
+    routerLink="/admin"
+  ></button>
+</p-sidebar>
+<button
+  type="text"
+  (click)="display = true"
+  pButton
+  pRipple
+  type="button"
+  icon="pi pi-user"
+  class="p-button-rounded p-button-warning"
+></button>
+
+<div class="vertical-container">
+  <div class="wrapper">
+    <p-confirmDialog #cd header="Konfirmo" icon="pi pi-exclamation-triangle">
+      <ng-template pTemplate="footer">
+        <button
+          type="button"
+          pButton
+          icon="pi pi-times"
+          label="Po"
+          (click)="cd.accept()"
+        ></button>
+        <button
+          type="button"
+          pButton
+          icon="pi pi-check"
+          label="Jo"
+          (click)="cd.reject()"
+        ></button>
+      </ng-template>
+    </p-confirmDialog>
+    <h1>Hello Alteo!</h1>
+    <button
+      class="p-mr-3"
+      (click)="confirmJobStart()"
+      pButton
+      icon="pi pi-clock"
+      label="Job Start"
+    ></button>
+    <button
+      class="p-mr-3"
+      (click)="confirmBreakStart()"
+      pButton
+      icon="pi pi-clock"
+      label="Break Start"
+    ></button>
+    <button
+      class="p-mr-3"
+      (click)="confirmBreakFinish()"
+      pButton
+      icon="pi pi-clock"
+      label="Break Finish"
+    ></button>
+    <button
+      (click)="confirmJobFinish()"
+      pButton
+      icon="pi pi-clock"
+      label="Job Finish"
+    ></button>
+    <p-messages [value]="msgs"></p-messages>
+  </div>
+</div>
