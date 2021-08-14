@@ -7,6 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
 import { MessageModule } from 'primeng/message';
 import { RippleModule } from 'primeng/ripple';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
@@ -23,6 +24,7 @@ import { ConfirmationService } from 'primeng/api';
     AdminLayoutComponent,
   ],
   imports: [
+    TableModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -39,6 +41,7 @@ import { ConfirmationService } from 'primeng/api';
   ],
   exports: [
     InputTextModule,
+    TableModule,
     ButtonModule,
     RadioButtonModule,
     RippleModule,

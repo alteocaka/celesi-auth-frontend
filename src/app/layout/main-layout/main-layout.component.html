@@ -1,20 +1,32 @@
 <p-sidebar [(visible)]="display">
+  <img id="logo" src="../../../assets/img/celesi_logo.png" alt="" /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="My Days"
+    class="p-button-raised p-button-success"
+    icon="pi pi-chart-bar"
+    routerLink="/admin"
+  ></button
+  ><br /><br />
   <button
     (click)="logout()"
     pButton
     pRipple
     type="button"
-    label="Logout"
+    label="Logout &nbsp;"
     class="p-button-raised"
     icon="pi pi-user"
   ></button
-  ><br /><br />
+  ><br />
   <button
     pButton
     pRipple
     type="button"
-    label="Admin"
-    class="p-button-raised p-button-info"
+    label="Admin &nbsp;&nbsp;"
+    class="p-button-rounded p-button-info"
+    style="margin-top: 600px"
     icon="pi pi-chart-bar"
     routerLink="/admin"
   ></button>

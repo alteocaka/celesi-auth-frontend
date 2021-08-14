@@ -10,21 +10,45 @@ export class DaysService {
 
   private readonly API = environment.api;
 
-  createEmptyDay() {
-    return this.http
-      .post(`${this.API}/days`, {
-        job_start: '',
-        break_start: '',
-        break_finish: '',
-        job_finish: '',
-        user: 1,
-      })
+  // Method for initializing a day
+  createDay() {
+    this.http.post(`${this.API}/days`, null).subscribe((day) => day);
+  }
+
+  // Method for getting all users days
+  getAllUsersDays() {
+    this.http.get(`${this.API}/users?join=days`).subscribe((data) => data);
+  }
+
+  // ****************************************
+  // Methods for updating the day properties:
+  // ****************************************
+
+  // Update Job Start Method
+  updateJobStart() {
+    this.http
+      .patch(`${this.API}/days/update/job_start`, null)
       .subscribe((day) => day);
   }
 
-  getAllUsersDays() {
-    return this.http
-      .get(`${this.API}/users?join=days`)
-      .subscribe((data) => console.log(data));
+  // Update Break Start Method
+  updateBreakStart() {
+    this.http
+      .patch(`${this.API}/days/update/break_start`, null)
+      .subscribe((day) => day);
+  }
+
+  // Update Break Finish Method
+  updateBreakFinish() {
+    this.http
+      .patch(`${this.API}/days/update/break_finish`, null)
+      .subscribe((day) => day);
+  }
+
+  // Update Job Finish Method
+  updateJobFinish() {
+    this.http
+      .patch(`${this.API}/days/update/job_finish`, null)
+      .subscribe((day) => day);
   }
 }

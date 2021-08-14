@@ -18,6 +18,10 @@ export class MainLayoutComponent implements OnInit {
   display: any;
   msgs: Message[] = [];
 
+  ngOnInit(): void {
+    return this.daysService.createDay();
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
@@ -35,6 +39,7 @@ export class MainLayoutComponent implements OnInit {
             detail: 'Orari u regjistrua, punë të mbarë.',
           },
         ];
+        return this.daysService.updateJobStart();
       },
       reject: () => {
         this.msgs = [
@@ -60,6 +65,7 @@ export class MainLayoutComponent implements OnInit {
             detail: 'Orari u regjistrua, pushim të mbarë.',
           },
         ];
+        return this.daysService.updateBreakStart();
       },
       reject: () => {
         this.msgs = [
@@ -85,6 +91,7 @@ export class MainLayoutComponent implements OnInit {
             detail: 'Orari u regjistrua, punë të mbarë.',
           },
         ];
+        return this.daysService.updateBreakFinish();
       },
       reject: () => {
         this.msgs = [
@@ -109,6 +116,7 @@ export class MainLayoutComponent implements OnInit {
             detail: 'Orari u regjistrua, ia kalofsh mirë.',
           },
         ];
+        return this.daysService.updateJobFinish();
       },
       reject: () => {
         this.msgs = [
@@ -120,9 +128,5 @@ export class MainLayoutComponent implements OnInit {
         ];
       },
     });
-  }
-
-  ngOnInit(): void {
-    this.daysService.createEmptyDay();
   }
 }
