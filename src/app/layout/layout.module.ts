@@ -16,12 +16,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { RouterModule } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { RestrictedLayoutComponent } from './restricted-layout/restricted-layout.component';
 
 @NgModule({
   declarations: [
     MainLayoutComponent,
     LoginLayoutComponent,
     AdminLayoutComponent,
+    RestrictedLayoutComponent,
   ],
   imports: [
     TableModule,
