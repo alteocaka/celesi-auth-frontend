@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 })
 export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,6 +22,8 @@ export class AdminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    if (null) {
+      return true;
+    } else return false;
   }
 }

@@ -26,7 +26,7 @@ export class AuthService {
       });
   }
 
-  async getLoggedInUser() {
-    return this.http.get(`${this.API}/users/me`)
+  getLoggedInUser() {
+    return this.http.get(`${this.API}/users/me`);
   }
 }
