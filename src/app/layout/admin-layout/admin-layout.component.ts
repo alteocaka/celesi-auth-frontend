@@ -9,9 +9,11 @@ import { DaysService } from 'src/app/days/days.service';
 export class AdminLayoutComponent implements OnInit {
   constructor(private daysService: DaysService) {}
 
-  users = this.daysService.getAllUsersDays();
+  async getUsersData(){
+    return this.daysService.getAllUsersDays()
+  }
 
   ngOnInit(): void {
-    this.daysService.getAllUsersDays();
+    this.getUsersData();
   }
 }
