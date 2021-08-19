@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { RestrictedLayoutComponent } from './restricted-layout/restricted-layout.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
     AdminLayoutComponent,
     RestrictedLayoutComponent,
     ProfileLayoutComponent,
+    UserDetailsComponent,
   ],
   imports: [
     TableModule,

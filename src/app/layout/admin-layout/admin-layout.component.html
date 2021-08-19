@@ -12,7 +12,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-dat>
-    <tr>
+    <tr (click)="userDetails(dat.id)">
       <td>{{ dat.id }}</td>
       <td>{{ dat.username }}</td>
       <td>{{ dat.role }}</td>

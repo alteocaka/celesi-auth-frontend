@@ -9,6 +9,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
     AuthModule,
   ],
   providers: [
+    MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

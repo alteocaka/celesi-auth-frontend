@@ -1,0 +1,8 @@
+<ng-container *ngIf="days$ | async as days; else loading">
+  <!-- TODO Implemento tabelen e diteve, te dhenat i ke te days dhe mund tja kalosh direkt -->
+  <pre>{{ days | json }}</pre>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

@@ -20,6 +20,12 @@ export class DaysService {
     return this.http.get(`${this.API}/users?join=days`);
   }
 
+  getOneUserDays(id: number) {
+    return this.http.get(`${this.API}/users/${id}?join=days`);
+  }
+
+
+
   // ****************************************
   // Methods for updating the day properties:
   // ****************************************

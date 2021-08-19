@@ -5,6 +5,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { UserDetailsComponent } from './layout/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [],
+  },
+  {
+    path:'user-details/:userId',
+    component: UserDetailsComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

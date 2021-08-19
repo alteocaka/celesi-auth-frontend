@@ -22,6 +22,7 @@ export class MainLayoutComponent implements OnInit {
   msgs: Message[] = [];
 
   ngOnInit(): void {
+    // this.authService.currentUserValue1();
     return this.daysService.createDay();
   }
 
