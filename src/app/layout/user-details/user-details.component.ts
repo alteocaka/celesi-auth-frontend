@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { throwError } from 'rxjs';
-import { catchError, pluck, switchMap } from 'rxjs/operators';
+import { catchError, pluck, subscribeOn, switchMap } from 'rxjs/operators';
 import { DaysService } from 'src/app/days/days.service';
 
 @Component({
@@ -11,6 +11,8 @@ import { DaysService } from 'src/app/days/days.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+
+  userDetails: any;
 
  days$ = this.route.params.pipe(
    pluck('userId'),

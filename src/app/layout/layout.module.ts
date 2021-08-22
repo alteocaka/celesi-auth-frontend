@@ -6,6 +6,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PasswordModule } from 'primeng/password';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {DialogModule} from 'primeng/dialog';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { MessageModule } from 'primeng/message';
@@ -34,6 +35,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DialogModule,
     InputTextModule,
     ButtonModule,
     RadioButtonModule,
@@ -51,6 +53,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     ButtonModule,
     RadioButtonModule,
     RippleModule,
+    DialogModule,
     PasswordModule,
     SidebarModule,
     MessageModule,

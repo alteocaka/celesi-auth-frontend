@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Details } from '../layout/user-details/details.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,9 @@ export class DaysService {
     return this.http.get(`${this.API}/users?join=days`);
   }
 
+  // Method for getting one user days
   getOneUserDays(id: number) {
-    return this.http.get(`${this.API}/users/${id}?join=days`);
+    return this.http.get<Details>(`${this.API}/users/${id}?join=days`);
   }
 
 

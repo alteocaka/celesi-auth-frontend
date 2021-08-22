@@ -11,6 +11,11 @@ export class AdminLayoutComponent implements OnInit {
 
 
   data: any;
+  display: boolean = false;
+
+    showDialog() {
+        this.display = true;
+    }
 
   constructor(
     private daysService: DaysService,

@@ -2,30 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject(
-      localStorage.getItem('currentUser')
-    );
-    this.loggedInUser = this.currentUserSubject;
-    console.log(this.loggedInUser);
+  private readonly API = environment.api;
+
+  public currentUserValue() {
+    return localStorage.getItem('currentUser');
   }
 
-  private readonly API = environment.api;
-  private currentUserSubject: BehaviorSubject<any>;
-  public loggedInUser: Observable<any>;
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
-  currentUserValue: any = localStorage.getItem('currentUser');
+  // public get currentUserValue1(): any {
+  //   return this.currentUserSubject;
+  // }
 
-  public get currentUserValue1(): any {
-		return this.currentUserSubject
-	}
+  // login(username: string, password: string) {
+  //   return this.http
+  //     .post(`${this.API}/auth/login`, { username, password }).pipe(tap((user: any) => {
+  //       localStorage.setItem('currentUser', user.access_token);
+  //       this.currentUserSubject.next(user);
+  //     }))
+
+  // }
 
   login(username: string, password: string) {
     return this.http
@@ -40,6 +44,7 @@ export class AuthService {
   }
 
   getLoggedInUser() {
-    return this.http.get(`${this.API}/users/me`);
+    return this.http.get(`${this.API}/users/me`)
   }
+
 }

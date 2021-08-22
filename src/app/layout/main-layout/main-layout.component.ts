@@ -20,22 +20,36 @@ export class MainLayoutComponent implements OnInit {
   display: any;
   username: any;
   msgs: Message[] = [];
+  user: any = null;
 
   ngOnInit(): void {
     // this.authService.currentUserValue1();
+
+    this.authService.getLoggedInUser().subscribe((user) => {
+      this.user = user;
+    });
+
     return this.daysService.createDay();
   }
 
-  getUsername() {
+  getUserData() {
     return this.authService.getLoggedInUser().subscribe((response) => {
       this.username = response;
+      console.log(this.username);
     });
+  }
+
+  userDetails(user: any) {
+    if (user && user.id) {
+      this.router.navigate([`/user-details/${user.id}`]);
+    }
   }
 
   logout() {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
     // localStorage.removeItem("expires_at");
+    // this.authService.currentUserSubject.next(null);
   }
 
   confirmJobStart() {

@@ -22,13 +22,17 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
     children: [],
   },
   {
     path:'user-details/:userId',
     component: UserDetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./layout/pages/users/users.module').then(m => m.UsersModule)
   }
 ];
 
