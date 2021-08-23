@@ -6,9 +6,11 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PasswordModule } from 'primeng/password';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { MessageModule } from 'primeng/message';
+import { BadgeModule } from 'primeng/badge';
 import { RippleModule } from 'primeng/ripple';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
@@ -18,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { RestrictedLayoutComponent } from './restricted-layout/restricted-layout.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -26,16 +29,19 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
     AdminLayoutComponent,
     RestrictedLayoutComponent,
     ProfileLayoutComponent,
+    UserDetailsComponent,
   ],
   imports: [
     TableModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DialogModule,
     InputTextModule,
     ButtonModule,
     RadioButtonModule,
     ConfirmDialogModule,
+    BadgeModule,
     RippleModule,
     PasswordModule,
     SidebarModule,
@@ -49,6 +55,8 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
     ButtonModule,
     RadioButtonModule,
     RippleModule,
+    DialogModule,
+    BadgeModule,
     PasswordModule,
     SidebarModule,
     MessageModule,
@@ -56,4 +64,4 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
   ],
   providers: [ConfirmationService],
 })
-export class LayoutModule {}
+export class LayoutModule { }

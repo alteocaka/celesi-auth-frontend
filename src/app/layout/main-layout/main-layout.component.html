@@ -7,29 +7,30 @@
     label="My Days"
     class="p-button-raised p-button-success"
     icon="pi pi-chart-bar"
-    routerLink="/admin"
+    (click)="userDetails(user)"
   ></button
   ><br /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Admin &nbsp;&nbsp;"
+    class="p-button-raised p-button-info"
+    icon="pi pi-th-large"
+    routerLink="/admin"
+  ></button>
+  <br />
   <button
     (click)="logout()"
     pButton
     pRipple
     type="button"
     label="Logout &nbsp;"
-    class="p-button-raised"
+    class="p-button-rounded"
+    style="margin-top: 600px"
     icon="pi pi-user"
   ></button
-  ><br />
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Admin &nbsp;&nbsp;"
-    class="p-button-rounded p-button-info"
-    style="margin-top: 600px"
-    icon="pi pi-chart-bar"
-    routerLink="/admin"
-  ></button>
+  >
 </p-sidebar>
 <button
   type="text"

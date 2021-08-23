@@ -5,6 +5,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { RestrictedLayoutComponent } from './layout/restricted-layout/restricted-layout.component';
+import { UserDetailsComponent } from './layout/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -21,8 +23,22 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
     children: [],
+  },
+  {
+    path:'user-details/:userId',
+    component: UserDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'restricted',
+    component: RestrictedLayoutComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./layout/pages/users/users.module').then(m => m.UsersModule)
   }
 ];
 

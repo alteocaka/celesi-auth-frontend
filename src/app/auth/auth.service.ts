@@ -2,18 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
-
   private readonly API = environment.api;
 
-  currentUserValue: any = localStorage.getItem('currentUser');
-  loggedInuser: any = localStorage.getItem('loggedInUser');
+  public currentUserValue() {
+    return localStorage.getItem('currentUser');
+  }
+
+  constructor(private http: HttpClient, private router: Router) {
+  }
+
+  // public get currentUserValue1(): any {
+  //   return this.currentUserSubject;
+  // }
+
+  // login(username: string, password: string) {
+  //   return this.http
+  //     .post(`${this.API}/auth/login`, { username, password }).pipe(tap((user: any) => {
+  //       localStorage.setItem('currentUser', user.access_token);
+  //       this.currentUserSubject.next(user);
+  //     }))
+
+  // }
 
   login(username: string, password: string) {
     return this.http
@@ -30,4 +46,5 @@ export class AuthService {
   getLoggedInUser() {
     return this.http.get(`${this.API}/users/me`)
   }
+
 }

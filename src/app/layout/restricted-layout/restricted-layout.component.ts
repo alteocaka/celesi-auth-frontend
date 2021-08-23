@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestrictedLayoutComponent implements OnInit {
 
+  displayBasic: boolean = false;
   constructor() { }
 
+  showBasicDialog() {
+    this.displayBasic = true;
+  }
+
   ngOnInit(): void {
+    return this.showBasicDialog()
   }
 
 }

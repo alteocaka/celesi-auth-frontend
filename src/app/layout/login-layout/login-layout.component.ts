@@ -9,12 +9,21 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./login-layout.component.css'],
 })
 export class LoginLayoutComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) { }
-
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  // login() {
+  //   const value = this.loginForm.value;
+  //   this.authService
+  //     .login(value.username, value.password)
+  //     .subscribe((user: any) => {
+  //       this.router.navigateByUrl('/');
+  //     });
+  // }
 
   login() {
     const value = this.loginForm.value;
