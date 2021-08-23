@@ -1,0 +1,41 @@
+<p-table class="p-mt-4" [value]="data">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id-ja</th>
+      <th>Përdoruesi</th>
+      <th>Roli</th>
+      <th>Ditët</th>
+      <th>Opsionet</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-dat>
+    <tr>
+      <td>{{ dat.id }}</td>
+      <td>{{ dat.username }}</td>
+      <td>
+        <p-badge value={{dat.role}}></p-badge>
+      </td>
+      <td (click)="userDetails(dat.id)">
+        <button pButton pRipple type="button" label="Shiko Ditët" class="p-button-rounded p-button-help"
+                icon="pi pi-chart-bar"></button>
+      </td>
+      <td>
+        <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
+        <button pButton pRipple type="button" icon="pi pi-bookmark"
+                class="p-button-rounded p-button-secondary p-button-text"></button>
+        <button pButton pRipple type="button" icon="pi pi-search"
+                class="p-button-rounded p-button-success p-button-text"></button>
+        <button pButton pRipple type="button" icon="pi pi-user"
+                class="p-button-rounded p-button-info p-button-text"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-paginator *ngIf="paginator"
+  (onPageChange)="paginatorChanged.emit($event)"
+  [first]="paginator.page - 1"
+  [rows]="paginator.count"
+  [totalRecords]="paginator.total"
+  [rowsPerPageOptions]="[10,20,30]">
+</p-paginator>
+<!--{{paginator.total}}-->

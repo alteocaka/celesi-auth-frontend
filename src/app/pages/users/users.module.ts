@@ -7,6 +7,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import { UserDetailsComponent } from './containers/user-details/user-details.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { BadgeModule } from 'primeng/badge';
+import { UserDaysTableComponent } from './components/user-days-table/user-days-table.component';
 
 
 const routes: Routes = [
@@ -35,11 +41,17 @@ const routes: Routes = [
     EditUserComponent,
     UsersTableComponent,
     UsersFormComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserDaysTableComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PaginatorModule,
+    TableModule,
+    ButtonModule,
+    RippleModule,
+    BadgeModule
   ]
 })
 export class UsersModule { }

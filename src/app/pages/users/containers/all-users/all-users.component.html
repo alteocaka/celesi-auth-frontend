@@ -1,0 +1,12 @@
+<ng-container *ngIf="data$ | async as data; else loading">
+<app-users-table
+  [data]="data.data"
+  [paginator]="paginator"
+  (rowClicked)="handleRowClicked($event)"
+  (paginatorChanged)="handlePaginatorChange($event)"
+>
+</app-users-table>
+</ng-container>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

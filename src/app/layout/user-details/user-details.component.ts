@@ -14,7 +14,7 @@ import * as XLSX from 'xlsx';
 export class UserDetailsComponent implements OnInit {
 
   userDetails: any;
-  fileName= 'User_Data.xlsx';  
+  fileName= 'User_Data.xlsx';
 
   days$ = this.route.params.pipe(
     pluck('userId'),
@@ -30,10 +30,10 @@ export class UserDetailsComponent implements OnInit {
     })
   )
 
-  exportexcel(): void 
+  exportexcel(): void
     {
-       /* table id is passed over here */   
-       let element = document.getElementById('excel-table'); 
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
        const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
        /* generate workbook and add the worksheet */
@@ -42,7 +42,7 @@ export class UserDetailsComponent implements OnInit {
 
        /* save to file */
        XLSX.writeFile(wb, this.fileName);
-			
+
     }
 
   constructor(

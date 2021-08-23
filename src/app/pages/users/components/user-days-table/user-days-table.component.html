@@ -1,0 +1,39 @@
+<!--<ng-container *ngIf="userDetails | async as userDetails; else loading">-->
+  <!-- TODO Implemento tabelen e diteve, te dhenat i ke te days dhe mund tja kalosh direkt -->
+  <div>
+    <p>User: {{userDetails.user.username}}</p>
+    <p>Role: {{userDetails.user.role}}</p>
+  </div>
+  <p-table [value]="userDetails.days.data" id="excel-table">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Job Start</th>
+        <th>Break Start</th>
+        <th>Break Finish</th>
+        <th>Job Finish</th>
+        <th>Working Hours</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.id}}</td>
+        <td>{{product.day}}</td>
+        <td>{{product.job_start}}</td>
+        <td>{{product.break_start}}</td>
+        <td>{{product.break_finish}}</td>
+        <td>{{product.job_finish}}</td>
+        <td>{{product.hours}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- <pre>{{ days | json }}</pre> -->
+<!--</ng-container>-->
+<button (click)="exportexcel()" class="p-mt-3 p-button-success" pButton pRipple label="Save CSV"
+        icon="pi pi-download"></button>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

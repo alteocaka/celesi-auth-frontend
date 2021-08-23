@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { take } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login-layout',
@@ -9,12 +11,17 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./login-layout.component.css'],
 })
 export class LoginLayoutComponent implements OnInit {
-  loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+  loginForm = this.fb.group({
+    username: [null, Validators.required],
+    password: [null, Validators.required]
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService,
+    private fb: FormBuilder
+  ) {}
 
   // login() {
   //   const value = this.loginForm.value;
@@ -27,7 +34,17 @@ export class LoginLayoutComponent implements OnInit {
 
   login() {
     const value = this.loginForm.value;
-    this.authService.login(value.username, value.password)
+    this.authService.login(value.username, value.password).pipe(take(1))
+      .subscribe((user: any) => {
+        console.log(user);
+        this.router.navigateByUrl('/');
+        this.authService.setUserLocalStorage(user.access_token)
+        console.log(localStorage.getItem('currentUser'));
+        return user;
+    }, error => {
+        console.log(error)
+        this.messageService.add({severity:'error', summary: 'Error', detail: error.error.message})
+      })
     // this.router.navigate(['/']);
   }
 

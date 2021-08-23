@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { map, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { API_URL } from '../core/tokens/ApiUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly API = environment.api;
 
   public currentUserValue() {
     return localStorage.getItem('currentUser');
   }
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    @Inject(API_URL) private api: string,
+    private http: HttpClient,
+    private router: Router) {
   }
 
   // public get currentUserValue1(): any {
@@ -33,18 +33,15 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http
-      .post(`${this.API}/auth/login`, { username, password })
-      .subscribe((user: any) => {
-        console.log(user);
-        this.router.navigateByUrl('/');
-        localStorage.setItem('currentUser', user.access_token);
-        console.log(localStorage.getItem('currentUser'));
-        return user;
-      });
+      .post(`${ this.api }/auth/login`, { username, password })
+  }
+
+  setUserLocalStorage(token: string): void {
+    localStorage.setItem('currentUser', token);
   }
 
   getLoggedInUser() {
-    return this.http.get(`${this.API}/users/me`)
+    return this.http.get(`${ this.api }/users/me`)
   }
 
 }

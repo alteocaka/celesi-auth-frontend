@@ -1,0 +1,15 @@
+<ng-container *ngIf="userDetails$ | async as userDetails; else loading">
+<!--  {{userDetails | json}}-->
+<app-user-days-table
+  [userDetails]="userDetails"
+  [paginator]="paginator"
+  (rowClicked)="handleRowClicked($event)"
+  (paginatorChanged)="handlePaginatorChange($event)">
+
+</app-user-days-table>
+<!--  te tabela-->
+<!--  {{userDetails.days.data}}-->
+</ng-container>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

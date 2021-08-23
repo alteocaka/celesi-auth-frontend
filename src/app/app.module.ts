@@ -10,6 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     HttpClientModule,
     AuthModule,
+    ToastModule,
   ],
   providers: [
     MessageService,
