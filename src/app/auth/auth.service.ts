@@ -13,20 +13,21 @@ export class AuthService {
   private readonly API = environment.api;
 
   currentUserValue: any = localStorage.getItem('currentUser');
+  loggedInuser: any = localStorage.getItem('loggedInUser');
 
   login(username: string, password: string) {
     return this.http
       .post(`${this.API}/auth/login`, { username, password })
       .subscribe((user: any) => {
         console.log(user);
-        localStorage.setItem('currentUser', user.access_token);
         this.router.navigateByUrl('/');
+        localStorage.setItem('currentUser', user.access_token);
         console.log(localStorage.getItem('currentUser'));
         return user;
       });
   }
 
-  async getLoggedInUser() {
+  getLoggedInUser() {
     return this.http.get(`${this.API}/users/me`)
   }
 }

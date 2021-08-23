@@ -17,7 +17,7 @@ export class DaysService {
 
   // Method for getting all users days
   getAllUsersDays() {
-    this.http.get(`${this.API}/users?join=days`).subscribe((data) => data);
+    return this.http.get(`${this.API}/users?join=days`);
   }
 
   // ****************************************

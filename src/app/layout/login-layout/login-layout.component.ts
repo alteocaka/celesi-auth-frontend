@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./login-layout.component.css'],
 })
 export class LoginLayoutComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -18,8 +18,9 @@ export class LoginLayoutComponent implements OnInit {
 
   login() {
     const value = this.loginForm.value;
-    this.authService.login(value.username, value.password);
+    this.authService.login(value.username, value.password)
+    // this.router.navigate(['/']);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

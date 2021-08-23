@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, Message } from 'primeng/api';
+import { AuthService } from 'src/app/auth/auth.service';
 import { DaysService } from 'src/app/days/days.service';
 
 @Component({
@@ -12,14 +13,22 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     private router: Router,
     private daysService: DaysService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private authService: AuthService
   ) {}
 
   display: any;
+  username: any;
   msgs: Message[] = [];
 
   ngOnInit(): void {
     return this.daysService.createDay();
+  }
+
+  getUsername() {
+    return this.authService.getLoggedInUser().subscribe((response) => {
+      this.username = response;
+    });
   }
 
   logout() {
