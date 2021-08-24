@@ -14,35 +14,32 @@ export class UserDetailsComponent implements OnInit {
 
   paginator: { page: number; count: number; total: number; pageCount: number } = {
     page: 1,
-    count: 1,
+    count: 10,
     total: 0,
     pageCount: 0
   };
 
   fileName = 'User_Data.xlsx';
 
-  // user$ = this.route.params.pipe(
-  //   pluck('userId'),
-  //   switchMap(id => this.usersService.getUserDetails(id)))
-  //
-  // days$ = this.route.params.pipe(
-  //   pluck('userId'),
-  //   switchMap(id => this.usersService.getUserDays(id, 1, 10)))
-
-  userDetails$ = this.route.params.pipe(
+  user$ = this.route.params.pipe(
     pluck('userId'),
-    switchMap(id =>
-      forkJoin(
-        [
-          this.usersService.getUserDetails(id),
-          this.usersService.getUserDays(id, 1, 10)
-        ]
-      )),
-    map((result: any) => ({ user: result[0], days: result[1] })),
-    catchError(error => {
-      this.router.navigateByUrl('users');
-      return throwError(error)
-    }),
+    switchMap(id => this.usersService.getUserDetails(id)))
+
+  days$ = this.route.params.pipe(
+    pluck('userId'),
+    switchMap(id => this.usersService.getUserDays(id, 1, 10)),
+    tap(result => {
+      if(result) {
+        this.paginator = {
+          ...this.paginator,
+          page: result.page,
+          total: result.total,
+          pageCount: result.pageCount
+        }
+      }
+
+    })
+
   )
 
   exportexcel(): void {
@@ -64,19 +61,19 @@ export class UserDetailsComponent implements OnInit {
 
   handlePaginatorChange(paginator: any): void {
     console.log(paginator);
-    this.userDetails$ = this.usersService.getUserDays(5, paginator.page + 1, paginator.rows).pipe(catchError(error => {
-      return throwError(error)
-    }), tap(result => {
-      if (result) {
-        this.paginator =
-        {
-          ...this.paginator,
-          page: result.days.page,
-          total: result.days.total,
-          pageCount: result.days.pageCount
+    this.days$ = this.route.params.pipe(
+      pluck('userId'),
+      switchMap(id => this.usersService.getUserDays(id, paginator.page + 1, paginator.rows)),
+      tap(result => {
+        this.paginator = {
+          count: paginator.rows,
+          page: result.page,
+          total: result.total,
+          pageCount: result.pageCount
         }
-      }
-    }))
+      })
+
+    )
   }
 
 

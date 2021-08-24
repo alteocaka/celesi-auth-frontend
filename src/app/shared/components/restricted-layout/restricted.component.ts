@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-restricted-layout',
-  templateUrl: './restricted-layout.component.html',
-  styleUrls: ['./restricted-layout.component.css']
+  templateUrl: './restricted.component.html',
+  styleUrls: ['./restricted.component.css']
 })
-export class RestrictedLayoutComponent implements OnInit {
+export class RestrictedComponent implements OnInit {
 
   displayBasic: boolean = false;
   constructor() { }

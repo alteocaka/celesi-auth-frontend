@@ -13,26 +13,53 @@
       <td>{{ dat.id }}</td>
       <td>{{ dat.username }}</td>
       <td>
-        <p-badge value={{dat.role}}></p-badge>
+        <p-badge value="{{ dat.role }}"></p-badge>
       </td>
       <td (click)="userDetails(dat.id)">
-        <button pButton pRipple type="button" label="Shiko Ditët" class="p-button-rounded p-button-help"
-          icon="pi pi-chart-bar"></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Shiko Ditët"
+          class="p-button-rounded p-button-help"
+          icon="pi pi-chart-bar"
+        ></button>
       </td>
       <td>
-        <button routerLink='edit/{{dat.id}}' pButton pRipple type="button" icon="pi pi-user-edit"
-          class="p-button-rounded p-button-help p-button-text"></button>
-        <button pButton pRipple type="button" icon="pi pi-bookmark"
-          class="p-button-rounded p-button-secondary p-button-text"></button>
-        <button pButton pRipple type="button" icon="pi pi-search"
-          class="p-button-rounded p-button-success p-button-text"></button>
-        <button pButton pRipple type="button" icon="pi pi-user"
-          class="p-button-rounded p-button-info p-button-text"></button>
+        <button
+          routerLink="edit/{{ dat.id }}"
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-user-edit"
+          class="p-button-rounded p-button-help p-button-text"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-user-minus"
+          class="p-button-rounded p-button-danger p-button-text"
+        ></button>
+        <button
+          pButton
+          pRipple
+          (click)="deleteClicked.emit(dat.id)"
+          type="button"
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-secondary p-button-text"
+        ></button>
       </td>
     </tr>
   </ng-template>
 </p-table>
-<p-paginator *ngIf="paginator" (onPageChange)="paginatorChanged.emit($event)" [first]="paginator.page - 1"
-  [rows]="paginator.count" [totalRecords]="paginator.total" [rowsPerPageOptions]="[10,20,30]">
+<p-paginator
+  *ngIf="paginator"
+  (onPageChange)="paginatorChanged.emit($event)"
+  [first]="(paginator.page - 1) * paginator.count"
+  [rows]="paginator.count"
+  [totalRecords]="paginator.total"
+  [rowsPerPageOptions]="[10, 20, 30]"
+>
 </p-paginator>
 <!--{{paginator.total}}-->

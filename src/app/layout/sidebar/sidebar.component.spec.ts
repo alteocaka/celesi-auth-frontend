@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestrictedLayoutComponent } from './restricted-layout.component';
+import { SidebarComponent } from './sidebar.component';
 
-describe('RestrictedLayoutComponent', () => {
-  let component: RestrictedLayoutComponent;
-  let fixture: ComponentFixture<RestrictedLayoutComponent>;
+describe('SidebarComponent', () => {
+  let component: SidebarComponent;
+  let fixture: ComponentFixture<SidebarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RestrictedLayoutComponent ]
+      declarations: [ SidebarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestrictedLayoutComponent);
+    fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

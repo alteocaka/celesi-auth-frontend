@@ -1,11 +1,14 @@
 <ng-container *ngIf="data$ | async as data; else loading">
-<app-users-table
-  [data]="data.data"
-  [paginator]="paginator"
-  (rowClicked)="handleRowClicked($event)"
-  (paginatorChanged)="handlePaginatorChange($event)"
->
-</app-users-table>
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+  <h1 class="p-text-light p-p-4">Admin's Panel</h1>
+  <app-users-table
+    [data]="data.data"
+    [paginator]="paginator"
+    (rowClicked)="handleRowClicked($event)"
+    (deleteClicked)="handleDeleteClicked($event)"
+    (paginatorChanged)="handlePaginatorChange($event)"
+  >
+  </app-users-table>
 </ng-container>
 <ng-template #loading>
   <p>Loading...</p>

@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { UsersService } from '../../services/users.service';
 import { toR3Reference } from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
 import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-all-users',
@@ -36,7 +37,9 @@ export class AllUsersComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {
   }
 
@@ -62,5 +65,20 @@ export class AllUsersComponent implements OnInit {
           }
       }
     }))
+  }
+
+  handleDeleteClicked(userId: number): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        //thirr metoden e fshirjes, ndyrsho logjiken en backend ne soft delete
+        this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+      },
+      reject: () => {
+        this.messageService.add({severity:'info', summary:'Rejected', detail:'You have rejected'});
+      }
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, pluck, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, pluck, switchMap, take } from 'rxjs/operators';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -10,17 +10,30 @@ import { UsersService } from '../../services/users.service';
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private usersService: UsersService, private route: ActivatedRoute) { }
-
   $userData = this.route.params.pipe(
     pluck('userId'),
     switchMap((id) => {
       return this.usersService.getUserDetails(id);
     }),
-    map(result => result)
   )
 
+  constructor(
+    private usersService: UsersService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
+  }
+
+  handleSubmitForm(payload: any, userId: number): void {
+    this.usersService.updateUser(userId, payload).pipe(take(1)).subscribe(result => {
+      // shto nje toast me messages service
+      this.router.navigateByUrl('users');
+    },
+      error => {
+      //shto nje toast
+      })
   }
 
 }

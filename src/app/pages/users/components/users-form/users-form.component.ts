@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users-form',
@@ -12,11 +13,17 @@ export class UsersFormComponent implements OnInit {
   @Input() userId!: number;
   @Input() userDetails: any;
   @Output() submitted = new EventEmitter
-  constructor() { }
+
+  form = this.fb.group({
+    username: [null, Validators.required],
+    password: [null, Validators.required]
+  })
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    if(this.userId) {
-      //Bej thirjen ne server dhe popullo formen
+    if(this.userDetails) {
+    this.form.patchValue(this.userDetails);
     }
   }
 

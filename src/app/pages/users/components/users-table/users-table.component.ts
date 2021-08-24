@@ -12,7 +12,7 @@ export class UsersTableComponent implements OnInit {
   @Input() paginator!: { page: number; count: number; total: number; pageCount: number};
   @Output() rowClicked = new EventEmitter();
   @Output() paginatorChanged = new EventEmitter();
-
+  @Output() deleteClicked = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

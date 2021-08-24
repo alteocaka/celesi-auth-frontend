@@ -1,0 +1,33 @@
+<ng-container *ngIf="state$ | async as state">
+<p-sidebar (onHide)="setSidebar(false)" [visible]="state.sidebar">
+  <img id="logo" src="../../../assets/img/celesi_logo.png" alt="" /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="My Days"
+    class="p-button-raised p-button-success"
+    icon="pi pi-chart-bar"
+  ></button><br /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Admin &nbsp;&nbsp;"
+    class="p-button-raised p-button-info"
+    icon="pi pi-th-large"
+    routerLink="/users"
+  ></button>
+  <br />
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Logout &nbsp;"
+    class="p-button-rounded"
+    style="margin-top: 600px"
+    icon="pi pi-user"
+  ></button
+  >
+</p-sidebar>
+</ng-container>

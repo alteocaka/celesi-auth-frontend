@@ -13,12 +13,14 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { BadgeModule } from 'primeng/badge';
 import { UserDaysTableComponent } from './components/user-days-table/user-days-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 const routes: Routes = [
   {
-  path: '',
-  component: AllUsersComponent
+    path: '',
+    component: AllUsersComponent
   },
   {
     path: 'create',
@@ -29,7 +31,7 @@ const routes: Routes = [
     component: EditUserComponent
   },
   {
-    path:'details/:userId',
+    path: 'details/:userId',
     component: UserDetailsComponent
   }
 ]
@@ -48,10 +50,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     PaginatorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ConfirmDialogModule,
     TableModule,
     ButtonModule,
     RippleModule,
     BadgeModule
   ]
 })
-export class UsersModule { }
+export class UsersModule {
+}

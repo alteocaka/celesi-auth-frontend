@@ -12,6 +12,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DaysCheckinModule } from './pages/days-checkin/days-checkin.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AuthModule,
     ToastModule,
+    DaysCheckinModule,
   ],
   providers: [
     MessageService,
