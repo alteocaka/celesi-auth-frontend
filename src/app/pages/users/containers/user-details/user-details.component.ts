@@ -8,18 +8,18 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: [ './user-details.component.css' ]
+  styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
 
   paginator: { page: number; count: number; total: number; pageCount: number } = {
     page: 1,
-    count: 10,
+    count: 1,
     total: 0,
     pageCount: 0
   };
 
-  fileName= 'User_Data.xlsx';
+  fileName = 'User_Data.xlsx';
 
   // user$ = this.route.params.pipe(
   //   pluck('userId'),
@@ -45,11 +45,10 @@ export class UserDetailsComponent implements OnInit {
     }),
   )
 
-  exportexcel(): void
-  {
+  exportexcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -65,17 +64,17 @@ export class UserDetailsComponent implements OnInit {
 
   handlePaginatorChange(paginator: any): void {
     console.log(paginator);
-    this.userDetails$ = this.usersService.getUsers(paginator.page + 1, paginator.rows).pipe(catchError(error => {
+    this.userDetails$ = this.usersService.getUserDays(5, paginator.page + 1, paginator.rows).pipe(catchError(error => {
       return throwError(error)
     }), tap(result => {
       if (result) {
-        // this.paginator =
-        //   {
-        //     count: paginator.rows,
-        //     page: result.page,
-        //     total: result.total,
-        //     pageCount: result.pageCount
-        //   }
+        this.paginator =
+        {
+          ...this.paginator,
+          page: result.days.page,
+          total: result.days.total,
+          pageCount: result.days.pageCount
+        }
       }
     }))
   }

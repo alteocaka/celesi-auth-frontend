@@ -27,4 +27,9 @@ export class UsersService {
     const path = `${this.api}/users/${id}`;
     return this.http.get(path);
   }
+
+  updateUser(id: number, payload: any) {
+    const path = `${this.api}/users/${id}`;
+    return this.http.patch(path, payload);
+  }
 }

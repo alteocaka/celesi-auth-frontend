@@ -3,6 +3,11 @@
   <div>
     <p>User: {{userDetails.user.username}}</p>
     <p>Role: {{userDetails.user.role}}</p>
+    <p>Count: {{userDetails.days.count}}</p>
+    <p>Page: {{userDetails.days.page}}</p>
+    <p>Count: {{userDetails.days.count}}</p>
+    <p>Total: {{userDetails.days.total}}</p>
+    <p>Limit: {{userDetails.days.pageCount}}</p>
   </div>
   <p-table [value]="userDetails.days.data" id="excel-table">
     <ng-template pTemplate="header">
@@ -25,12 +30,19 @@
         <td>{{product.break_start}}</td>
         <td>{{product.break_finish}}</td>
         <td>{{product.job_finish}}</td>
-        <td>{{product.hours}}</td>
+        <td>{{product.hours}} hours</td>
       </tr>
     </ng-template>
   </p-table>
+  <p-paginator *ngIf="paginator"
+  (onPageChange)="paginatorChanged.emit($event)"
+  [first]="paginator.page - 1"
+  [rows]="paginator.count"
+  [totalRecords]="paginator.total"
+  [rowsPerPageOptions]="[10,20,30]">
+</p-paginator>
   <!-- <pre>{{ days | json }}</pre> -->
-<!--</ng-container>-->
+<!--</ng-container> -->
 <button (click)="exportexcel()" class="p-mt-3 p-button-success" pButton pRipple label="Save CSV"
         icon="pi pi-download"></button>
 

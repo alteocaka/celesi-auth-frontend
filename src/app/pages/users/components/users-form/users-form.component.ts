@@ -10,12 +10,13 @@ export class UsersFormComponent implements OnInit {
 
 
   @Input() userId!: number;
+  @Input() userDetails: any;
   @Output() submitted = new EventEmitter
   constructor() { }
 
   ngOnInit(): void {
     if(this.userId) {
-      //bej thirjen ne server dhe popullo formen
+      //Bej thirjen ne server dhe popullo formen
     }
   }
 
