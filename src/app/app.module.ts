@@ -13,9 +13,10 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DaysCheckinModule } from './pages/days-checkin/days-checkin.module';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +26,7 @@ import { DaysCheckinModule } from './pages/days-checkin/days-checkin.module';
     AuthModule,
     ToastModule,
     DaysCheckinModule,
+    ReactiveFormsModule
   ],
   providers: [
     MessageService,

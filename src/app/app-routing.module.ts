@@ -10,11 +10,13 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { UserDetailsComponent } from './layout/user-details/user-details.component';
 import { RestrictedComponent } from './shared/components/restricted-layout/restricted.component';
 import { DaysCheckinComponent } from './pages/days-checkin/containers/days-checkin/days-checkin.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginLayoutComponent,
+    // component: LoginLayoutComponent,
+    component: LoginComponent,
     canActivate: [NonAuthGuard],
     children: [],
   },
@@ -56,8 +58,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

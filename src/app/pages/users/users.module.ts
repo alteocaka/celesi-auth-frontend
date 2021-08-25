@@ -15,6 +15,7 @@ import { BadgeModule } from 'primeng/badge';
 import { UserDaysTableComponent } from './components/user-days-table/user-days-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,8 @@ const routes: Routes = [
     UsersTableComponent,
     UsersFormComponent,
     UserDetailsComponent,
-    UserDaysTableComponent
+    UserDaysTableComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

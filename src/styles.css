@@ -5,7 +5,7 @@ h1, h2, h3, h4, h4, p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.vertical-container {
+/* .vertical-container {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -31,7 +31,7 @@ h1, h2, h3, h4, h4, p {
 
 /* div {
   border: 1px solid red;
-} */
+} */ */
 
 h1 {
   font-family: "Roboto", sans-serif;
