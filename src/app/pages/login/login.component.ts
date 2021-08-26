@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
 import { take } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',

@@ -1,1 +1,10 @@
-<p>user-profile works!</p>
+<ng-container *ngIf="userInformation  else loading">
+  <div class="p-d-flex p-align-center">
+    <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
+    <h1 class="p-text-light p-p-4">Profili im</h1>
+    <pre>{{userInformation | json }}</pre>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

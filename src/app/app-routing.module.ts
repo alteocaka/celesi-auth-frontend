@@ -1,42 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
-import { AdminGuard } from './auth/admin.guard';
 import { MainComponent } from './layout/main/main.component';
-import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
-import { NonAuthGuard } from './auth/non-auth.guard';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { UserDetailsComponent } from './layout/user-details/user-details.component';
 import { RestrictedComponent } from './shared/components/restricted-layout/restricted.component';
-import { DaysCheckinComponent } from './pages/days-checkin/containers/days-checkin/days-checkin.component';
-import { LoginComponent } from './pages/login/login.component';
+import { UserDetailsComponent } from './pages/users/containers/user-details/user-details.component';
+import { NonAuthGuard } from './core/auth/non-auth.guard';
+import { AuthGuard } from './core/auth/auth.guard';
+import { AdminGuard } from './core/auth/admin.guard';
 
 const routes: Routes = [
   {
     path: 'login',
     // component: LoginLayoutComponent,
-    component: LoginComponent,
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
     canActivate: [NonAuthGuard],
-    children: [],
   },
   {
     path: '',
     component: MainComponent,
     children: [
-      // Per tu fshire:
       {
         path: '',
-        // component: MainLayoutComponent,
-        component: DaysCheckinComponent,
+        loadChildren: () => import('./pages/days-checkin/days-checkin.module').then(m => m.DaysCheckinModule),
         canActivate: [AuthGuard],
-        children: [],
-      },
-      {
-        path: 'admin',
-        component: AdminLayoutComponent,
-        canActivate: [AuthGuard, AdminGuard],
-        children: [],
       },
       {
         path: 'user-details/:userId',

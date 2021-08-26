@@ -1,6 +1,9 @@
 <ng-container *ngIf="data$ | async as data; else loading">
   <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-  <h1 class="p-text-light p-p-4">Admin's Panel</h1>
+  <div class="p-d-flex p-align-center">
+    <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
+    <h1 class="p-text-light p-p-4">Admin's Panel</h1>
+  </div>
   <app-users-table
     [data]="data.data"
     [paginator]="paginator"

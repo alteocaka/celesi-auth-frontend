@@ -5,17 +5,30 @@
     pButton
     pRipple
     type="button"
+    label="Home &nbsp;&nbsp;&nbsp;"
+    class="p-button-rounded p-button-secondary"
+    icon="pi pi-home"
+    (click)="setSidebar(false)"
+    routerLink="/"
+  ></button><br /><br />
+  <button
+    pButton
+    pRipple
+    type="button"
     label="My Days"
-    class="p-button-raised p-button-success"
+    class="p-button-rounded p-button-success"
     icon="pi pi-chart-bar"
+    (click)="setSidebar(false)"
+    routerLink="/users/my-profile"
   ></button><br /><br />
   <button
     pButton
     pRipple
     type="button"
     label="Admin &nbsp;&nbsp;"
-    class="p-button-raised p-button-info"
+    class="p-button-rounded p-button-info"
     icon="pi pi-th-large"
+    (click)="setSidebar(false)"
     routerLink="/users"
   ></button>
   <br />
@@ -23,10 +36,11 @@
     pButton
     pRipple
     type="button"
-    label="Logout &nbsp;"
+    label="Dil &nbsp;"
     class="p-button-rounded"
-    style="margin-top: 600px"
+    style="margin-top: 550px"
     icon="pi pi-user"
+    (click)="logout()"
   ></button
   >
 </p-sidebar>

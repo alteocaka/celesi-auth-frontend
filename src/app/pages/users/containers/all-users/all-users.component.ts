@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, take, tap } from 'rxjs/operators';
 import { UsersService } from '../../services/users.service';
 import { toR3Reference } from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
 import { Router } from '@angular/router';
@@ -69,15 +69,32 @@ export class AllUsersComponent implements OnInit {
 
   handleDeleteClicked(userId: number): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: 'A je i sigurt se do të fish profilin e përdoruesit?',
+      header: 'Konfirmim!',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        //thirr metoden e fshirjes, ndyrsho logjiken en backend ne soft delete
-        this.messageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
+        this.usersService.deleteUser(userId).pipe(take(1)).subscribe(() => {
+        this.messageService.add({severity:'success', summary:'Sukses!', detail:'Përdoruesi dhe rekordet e tij u fshinë nga sistemi.'});
+        this.data$ = this.usersService.getUsers(this.paginator.page, this.paginator.count).pipe(catchError(error => {
+          return throwError(error)
+        }), tap(result => {
+          if (result) {
+            this.paginator =
+              {
+                ...this.paginator,
+                page: result.page,
+                total: result.total,
+                pageCount: result.pageCount
+              }
+          }
+        }))
+        }, error => {
+          this.messageService.add({severity:'error', summary:'Error!', detail: error.error.message});
+
+        })
       },
       reject: () => {
-        this.messageService.add({severity:'info', summary:'Rejected', detail:'You have rejected'});
+        this.messageService.add({severity:'info', summary:'U refuzua!', detail:'Profili i përdoruesit është ende aktiv.'});
       }
     });
   }

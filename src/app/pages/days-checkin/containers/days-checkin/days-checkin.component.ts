@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, Message } from 'primeng/api';
-import { AuthService } from 'src/app/auth/auth.service';
 import { DaysCheckinService } from '../../services/days-checkin.service';
+import { AuthService } from '../../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-days-checkin',

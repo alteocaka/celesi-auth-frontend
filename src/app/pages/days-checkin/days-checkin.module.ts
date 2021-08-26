@@ -4,6 +4,15 @@ import { DaysCheckinComponent } from './containers/days-checkin/days-checkin.com
 import { MessageModule } from 'primeng/message';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
+
+const routes: Routes = [ {
+  path: '',
+  component: DaysCheckinComponent
+}];
 
 @NgModule({
   declarations: [DaysCheckinComponent],
@@ -11,7 +20,11 @@ import { MessagesModule } from 'primeng/messages';
     CommonModule,
     MessageModule,
     MessagesModule,
+    ButtonModule,
+    InputTextModule,
+
     ConfirmDialogModule,
+    RouterModule.forChild(routes)
   ],
   exports: [],
 })

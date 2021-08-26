@@ -28,8 +28,18 @@ export class UsersService {
     return this.http.get(path);
   }
 
-  updateUser(id: number, payload: any) {
+  updateUser(id: number, payload: any): Observable<any> {
     const path = `${this.api}/users/${id}`;
     return this.http.patch(path, payload);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    const path = `${this.api}/users/soft-delete/${id}`;
+    return this.http.delete(path);
+  }
+
+  getUserProfile(): Observable<any> {
+    const path = `${this.api}/users/me`;
+    return this.http.get(path);
   }
 }

@@ -16,12 +16,17 @@ import { UserDaysTableComponent } from './components/user-days-table/user-days-t
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
+import { ToHoursPipe } from 'src/app/core/pipes/hours.pipe';
 
 
 const routes: Routes = [
   {
     path: '',
     component: AllUsersComponent
+  },
+  {
+    path: 'my-profile',
+    component: UserProfileComponent
   },
   {
     path: 'create',
@@ -46,7 +51,8 @@ const routes: Routes = [
     UsersFormComponent,
     UserDetailsComponent,
     UserDaysTableComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ToHoursPipe
   ],
   imports: [
     CommonModule,

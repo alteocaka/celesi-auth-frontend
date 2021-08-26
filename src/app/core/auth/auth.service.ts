@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { API_URL } from '../core/tokens/ApiUrl';
+import { API_URL } from '../tokens/ApiUrl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   public currentUserValue() {
     return localStorage.getItem('currentUser');
   }
@@ -15,8 +14,8 @@ export class AuthService {
   constructor(
     @Inject(API_URL) private api: string,
     private http: HttpClient,
-    private router: Router) {
-  }
+    private router: Router
+  ) {}
 
   // public get currentUserValue1(): any {
   //   return this.currentUserSubject;
@@ -32,8 +31,7 @@ export class AuthService {
   // }
 
   login(username: string, password: string) {
-    return this.http
-      .post(`${ this.api }/auth/login`, { username, password })
+    return this.http.post(`${this.api}/auth/login`, { username, password });
   }
 
   setUserLocalStorage(token: string): void {
@@ -41,7 +39,6 @@ export class AuthService {
   }
 
   getLoggedInUser() {
-    return this.http.get(`${ this.api }/users/me`)
+    return this.http.get(`${this.api}/users/me`);
   }
-
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { LayoutService } from '../services/layout.service';
 
 @Component({
@@ -8,15 +9,24 @@ import { LayoutService } from '../services/layout.service';
 })
 export class SidebarComponent implements OnInit {
 
+  @Output() logoutClicked = new EventEmitter();
+
   state$ = this.layoutState.state$;
 
-  constructor(private layoutState: LayoutService) { }
+  constructor(private layoutState: LayoutService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   setSidebar(sidebar: boolean): void {
      this.layoutState.setSidebar(sidebar);
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
+    // localStorage.removeItem("expires_at");
+    // this.authService.currentUserSubject.next(null);
   }
 
 }

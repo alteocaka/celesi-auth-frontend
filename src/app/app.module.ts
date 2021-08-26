@@ -6,17 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LayoutModule } from './layout/layout.module';
-import { AuthModule } from './auth/auth.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './auth/jwt.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DaysCheckinModule } from './pages/days-checkin/days-checkin.module';
-import { LoginComponent } from './pages/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './core/auth/auth.module';
+import { JwtInterceptor } from './core/auth/jwt.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,13 +23,13 @@ import { LoginComponent } from './pages/login/login.component';
     HttpClientModule,
     AuthModule,
     ToastModule,
-    DaysCheckinModule,
     ReactiveFormsModule
   ],
   providers: [
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [ AppComponent ],
 })
-export class AppModule {}
+export class AppModule {
+}

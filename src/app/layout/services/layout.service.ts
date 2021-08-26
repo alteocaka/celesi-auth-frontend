@@ -11,7 +11,6 @@ export class LayoutService {
   state$ = this.layoutState.asObservable();
 
   constructor() {
-    this.state$.subscribe(console.log)
   }
 
   get state(): {sidebar: boolean} {
