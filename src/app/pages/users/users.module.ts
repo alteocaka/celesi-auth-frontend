@@ -17,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 import { ToHoursPipe } from 'src/app/core/pipes/hours.pipe';
+import { CreateUserFormComponent } from './components/create-user-form/create-user-form.component';
+import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 const routes: Routes = [
@@ -46,6 +49,7 @@ const routes: Routes = [
   declarations: [
     AllUsersComponent,
     CreateUserComponent,
+    CreateUserFormComponent,
     EditUserComponent,
     UsersTableComponent,
     UsersFormComponent,
@@ -64,7 +68,9 @@ const routes: Routes = [
     TableModule,
     ButtonModule,
     RippleModule,
-    BadgeModule
+    BadgeModule,
+    InputTextModule,
+    ToastModule
   ]
 })
 export class UsersModule {

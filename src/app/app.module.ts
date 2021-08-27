@@ -14,7 +14,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { JwtInterceptor } from './core/auth/jwt.interceptor';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

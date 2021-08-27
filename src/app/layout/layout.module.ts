@@ -21,6 +21,7 @@ import { RestrictedComponent } from '../shared/components/restricted-layout/rest
 import { MainComponent } from './main/main.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const routes: Routes = [
 
@@ -31,6 +32,7 @@ export const routes: Routes = [
     MainComponent,
     NavbarComponent,
     SidebarComponent,
+    FooterComponent,
   ],
   imports: [
     TableModule,

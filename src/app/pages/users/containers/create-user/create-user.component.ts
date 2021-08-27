@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
+import { API_URL } from 'src/app/core/tokens/ApiUrl';
 
 @Component({
   selector: 'app-create-user',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(API_URL) private api: string,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  createUser() {
+    return console.log('Hello!')
   }
 
 }
