@@ -12,7 +12,6 @@ import { ToastModule } from 'primeng/toast';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './core/auth/auth.module';
 import { JwtInterceptor } from './core/auth/jwt.interceptor';
-
 @NgModule({
   declarations: [ AppComponent],
   imports: [
@@ -23,7 +22,7 @@ import { JwtInterceptor } from './core/auth/jwt.interceptor';
     HttpClientModule,
     AuthModule,
     ToastModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     MessageService,

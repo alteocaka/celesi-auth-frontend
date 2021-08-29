@@ -69,7 +69,7 @@ export class AllUsersComponent implements OnInit {
 
   handleDeleteClicked(userId: number): void {
     this.confirmationService.confirm({
-      message: 'A je i sigurt se do të fish profilin e përdoruesit?',
+      message: 'A je i sigurt se do të fshish profilin e përdoruesit?',
       header: 'Konfirmim!',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

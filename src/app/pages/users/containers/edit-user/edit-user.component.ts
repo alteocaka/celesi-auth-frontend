@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, pluck, switchMap, take } from 'rxjs/operators';
 import { UsersService } from '../../services/users.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-edit-user',
@@ -20,7 +21,8 @@ export class EditUserComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +34,8 @@ export class EditUserComponent implements OnInit {
       this.router.navigateByUrl('users');
     },
       error => {
-      //shto nje toast
+        console.log(error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message })
       })
   }
 

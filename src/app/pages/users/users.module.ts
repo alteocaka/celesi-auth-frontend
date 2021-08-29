@@ -20,6 +20,8 @@ import { ToHoursPipe } from 'src/app/core/pipes/hours.pipe';
 import { CreateUserFormComponent } from './components/create-user-form/create-user-form.component';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
+import { UserProfileDaysTableComponent } from './components/user-profile-days-table/user-profile-days-table.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 const routes: Routes = [
@@ -53,6 +55,7 @@ const routes: Routes = [
     EditUserComponent,
     UsersTableComponent,
     UsersFormComponent,
+    UserProfileDaysTableComponent,
     UserDetailsComponent,
     UserDaysTableComponent,
     UserProfileComponent,
@@ -66,6 +69,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ConfirmDialogModule,
     TableModule,
+    RadioButtonModule,
     ButtonModule,
     RippleModule,
     BadgeModule,

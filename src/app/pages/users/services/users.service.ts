@@ -3,6 +3,7 @@ import { API_URL } from '../../../core/tokens/ApiUrl';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +29,11 @@ export class UsersService {
     return this.http.get(path);
   }
 
+  createUser(payload: any): Observable<any> {
+    const path = `${this.api}/users/`;
+    return this.http.post(path, payload);
+  }
+
   updateUser(id: number, payload: any): Observable<any> {
     const path = `${this.api}/users/${id}`;
     return this.http.patch(path, payload);
@@ -42,4 +48,10 @@ export class UsersService {
     const path = `${this.api}/users/me`;
     return this.http.get(path);
   }
+
+  getUserDaysCSV(id: number): Observable<any>{
+    const path = `${this.api}/users/csv/${id}`;
+    return this.http.get(path, {responseType: 'blob', headers: {'Accept': 'application/csv'}});
+  }
+
 }

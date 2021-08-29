@@ -10,15 +10,13 @@ export class CreateUserFormComponent implements OnInit {
 
   @Output() createRequest = new EventEmitter();
 
+  // @TODO Hiq decoratorin nga forma dhe krijo output me vete
   @Output()
   profileForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
+    role: new FormControl('1')
   });
-
-  createRequestEvent() {
-    this.createRequest.emit();
-  }
 
   constructor() { }
 

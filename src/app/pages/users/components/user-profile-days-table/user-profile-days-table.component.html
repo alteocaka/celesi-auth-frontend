@@ -1,16 +1,22 @@
-<!--<ng-container *ngIf="userDetails | async as userDetails; else loading">-->
-<!-- TODO Implemento tabelen e diteve, te dhenat i ke te days dhe mund tja kalosh direkt -->
-
-<p-table [value]="days.data" id="excel-table">
+<p-table #dt1 [value]="days.data" id="excel-table" [globalFilterFields]="['date']">
+<!--  <ng-template pTemplate="caption">-->
+<!--    <div class="p-d-flex">-->
+<!--      <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>-->
+<!--      <span class="p-input-icon-left p-ml-auto">-->
+<!--                    <i class="pi pi-search"></i>-->
+<!--                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />-->
+<!--                </span>-->
+<!--    </div>-->
+<!--  </ng-template>-->
   <ng-template pTemplate="header">
     <tr>
-      <th>Id</th>
-      <th>Date</th>
-      <th>Job Start</th>
-      <th>Break Start</th>
-      <th>Break Finish</th>
-      <th>Job Finish</th>
-      <th>Working Hours</th>
+      <th field="id">Id</th>
+      <th field="date">Date</th>
+      <th field="job_start">Job Start</th>
+      <th field="break_start">Break Start</th>
+      <th field="break_finish">Break Finish</th>
+      <th field="job_finish">Job Finish</th>
+      <th field="working_hours">Working Hours</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>

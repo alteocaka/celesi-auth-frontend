@@ -1,9 +1,26 @@
-<ng-container *ngIf="userInformation  else loading">
+<ng-container *ngIf="userInformation$ | async as userInformation  else loading">
   <div class="p-d-flex p-align-center">
-    <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
     <h1 class="p-text-light p-p-4">Profili im</h1>
-    <pre>{{userInformation | json }}</pre>
+    <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
+    <button
+      (click)="exportexcel()"
+      class="p-mt-3 p-button-success p-button-rounded"
+      type="button"
+      pButton
+      pRipple
+      label="Eksporto CSV"
+      icon="pi pi-download"
+      style="margin-left: 60%;"
+    ></button>
+<!--    <pre>{{userInformation | json }}</pre>-->
   </div>
+  <app-user-profile-days-table
+    [days]="userInformation "
+    [paginator]="paginator"
+    (rowClicked)="handleRowClicked($event)"
+    (paginatorChanged)="handlePaginatorChange($event)"
+  ></app-user-profile-days-table>
+  <button (click)="downloadCSV(userInformation.data[0].user.id)">Shkarko</button>
 </ng-container>
 <ng-template #loading>
   <p>Loading...</p>

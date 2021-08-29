@@ -16,7 +16,7 @@ export class UsersFormComponent implements OnInit {
 
   form = this.fb.group({
     username: [null, Validators.required],
-    password: [null, Validators.required]
+    role: ['1', Validators.required]
   })
 
   constructor(private fb: FormBuilder) { }
