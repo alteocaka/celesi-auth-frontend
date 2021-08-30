@@ -3,7 +3,7 @@
     <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/users" iconPos="left"></p-button>
   <h1 class="p-text-light p-p-4">Admin's Panel</h1>
   </div>
-  <div class="p-pl-4 p-pb-4">
+  <div class="p-pl-4 p-pb-1">
     <h3 class="p-text-normal">
     <span [ngStyle]="{ color: 'var(--primary-color)' }"
     ><i class="pi pi-user"></i> USER: &nbsp;
@@ -31,5 +31,5 @@
   </app-user-days-table>
 </ng-container>
 <ng-template #loading>
-  <p>Loading...</p>
+  <app-loading></app-loading>
 </ng-template>

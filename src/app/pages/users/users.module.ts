@@ -22,12 +22,18 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { UserProfileDaysTableComponent } from './components/user-profile-days-table/user-profile-days-table.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConversionPipe } from 'src/app/core/pipes/conversion.pipe';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { AdminGuard } from 'src/app/core/auth/admin.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: AllUsersComponent
+    component: AllUsersComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'my-profile',
@@ -35,15 +41,18 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateUserComponent
+    component: CreateUserComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'edit/:userId',
-    component: EditUserComponent
+    component: EditUserComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'details/:userId',
-    component: UserDetailsComponent
+    component: UserDetailsComponent,
+    canActivate: [AdminGuard]
   }
 ]
 
@@ -59,10 +68,13 @@ const routes: Routes = [
     UserDetailsComponent,
     UserDaysTableComponent,
     UserProfileComponent,
-    ToHoursPipe
+    ToHoursPipe,
+    ConversionPipe,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
+    ProgressSpinnerModule,
     RouterModule.forChild(routes),
     PaginatorModule,
     FormsModule,
