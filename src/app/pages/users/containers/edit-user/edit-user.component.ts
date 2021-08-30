@@ -30,12 +30,12 @@ export class EditUserComponent implements OnInit {
 
   handleSubmitForm(payload: any, userId: number): void {
     this.usersService.updateUser(userId, payload).pipe(take(1)).subscribe(result => {
-      // shto nje toast me messages service
+      this.messageService.add({ severity: 'success', summary: 'Sukses!', detail: 'Përdoruesi u editua me sukses!' })
       this.router.navigateByUrl('users');
     },
       error => {
         console.log(error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message })
+        this.messageService.add({ severity: 'error', summary: 'Error!', detail: error.error.message })
       })
   }
 
