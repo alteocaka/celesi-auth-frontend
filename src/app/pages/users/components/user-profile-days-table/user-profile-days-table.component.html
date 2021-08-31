@@ -17,6 +17,7 @@
       <th field="break_finish">Break Finish</th>
       <th field="job_finish">Job Finish</th>
       <th field="working_hours">Working Hours</th>
+      <th field="working_hours">Conversion</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
@@ -28,6 +29,7 @@
       <td>{{ product.break_finish | date: 'mediumTime' }}</td>
       <td>{{ product.job_finish | date: 'mediumTime' }}</td>
       <td>{{ product.hours | toHours }} hours</td>
+      <td>{{ product.hours | conversionPipe }} hours</td>
     </tr>
   </ng-template>
 </p-table>
