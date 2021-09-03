@@ -12,7 +12,7 @@ export class ConversionPipe implements PipeTransform {
         }
 
         if (conversion < 0) {
-            return + conversion.toPrecision(2);
+            return + conversion.toPrecision(2) * -1;
         }
 
     }
