@@ -21,6 +21,7 @@
       <p>Limit: {{userDetails.days.pageCount}}</p> -->
   </div>
 </ng-container>
+<p-calendar inputId="basic" [(ngModel)]="filter" (ngModelChange)="handleFilterChange($event)"></p-calendar>
 <ng-container *ngIf="days$ | async as days; else loading">
   <app-user-days-table
     [days]="days"

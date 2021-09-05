@@ -14,8 +14,9 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
-  getUsers(page: number, rows: number): Observable<any> {
-    const path = `${this.api}/users?page=${page}&limit=${rows}`
+  getUsers(page: number, rows: number, filter: string): Observable<any> {
+    const path = `${this.api}/users?page=${page}&limit=${rows}&s={"username": {"$or": {"$isnull": true, "$cont": "${filter}"}}}`
+    console.log(path)
     return this.http.get(path);
   }
 

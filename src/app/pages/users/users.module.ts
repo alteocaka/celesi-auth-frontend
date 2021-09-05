@@ -27,6 +27,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConversionPipe } from 'src/app/core/pipes/conversion.pipe';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { AdminGuard } from 'src/app/core/auth/admin.guard';
+import { CalendarModule } from 'primeng/calendar';
 
 
 const routes: Routes = [
@@ -78,6 +79,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     PaginatorModule,
     FormsModule,
+    CalendarModule,
     ReactiveFormsModule,
     ConfirmDialogModule,
     TableModule,

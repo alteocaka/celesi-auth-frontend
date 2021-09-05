@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of, throwError } from 'rxjs';
-import { catchError, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, of, throwError } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, take, tap } from 'rxjs/operators';
 import { UsersService } from '../../services/users.service';
 import { toR3Reference } from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
 import { Router } from '@angular/router';
@@ -20,7 +20,12 @@ export class AllUsersComponent implements OnInit {
     pageCount: 0
   };
 
-  data$ = this.usersService.getUsers(this.paginator.page, this.paginator.count).pipe(catchError(error => {
+  filter = '';
+
+  data$ = this.usersService.getUsers(
+    this.paginator.page,
+    this.paginator.count,
+    this.filter).pipe(catchError(error => {
     // this.messageService.add
     return throwError(error)
   }), tap(result => {
@@ -35,6 +40,18 @@ export class AllUsersComponent implements OnInit {
     }
   }))
 
+  filterChanged = new BehaviorSubject<any>('');
+
+  filterChanged$ = this.filterChanged.pipe(
+    debounceTime(1500),
+    distinctUntilChanged(),
+    tap((event: any) => {
+      if(event) {
+      this.handleFilterChange(event.target.value);
+      }
+    })
+  )
+
   constructor(
     private usersService: UsersService,
     private router: Router,
@@ -46,13 +63,15 @@ export class AllUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
   handleRowClicked(id: number) {
     this.router.navigateByUrl(`users/details/${id}`);
   }
 
   handlePaginatorChange(paginator: any): void {
     console.log(paginator);
-    this.data$ = this.usersService.getUsers(paginator.page + 1, paginator.rows).pipe(catchError(error => {
+    this.data$ = this.usersService.getUsers(paginator.page + 1, paginator.rows, this.filter).pipe(catchError(error => {
       return throwError(error)
     }), tap(result => {
       if (result) {
@@ -60,6 +79,23 @@ export class AllUsersComponent implements OnInit {
           {
             count: paginator.rows,
             page: result.page,
+            total: result.total,
+            pageCount: result.pageCount
+          }
+      }
+    }))
+  }
+
+  handleFilterChange(filter: string): void {
+    console.log(this.paginator)
+    this.data$ = this.usersService.getUsers(this.paginator.page, this.paginator.count, filter).pipe(catchError(error => {
+      return throwError(error)
+    }), tap(result => {
+      if (result) {
+        this.paginator =
+          {
+            count: this.paginator.count,
+            page: 1,
             total: result.total,
             pageCount: result.pageCount
           }
@@ -75,7 +111,7 @@ export class AllUsersComponent implements OnInit {
       accept: () => {
         this.usersService.deleteUser(userId).pipe(take(1)).subscribe(() => {
         this.messageService.add({severity:'success', summary:'Sukses!', detail:'Përdoruesi dhe rekordet e tij u fshinë nga sistemi.'});
-        this.data$ = this.usersService.getUsers(this.paginator.page, this.paginator.count).pipe(catchError(error => {
+        this.data$ = this.usersService.getUsers(this.paginator.page, this.paginator.count, this.filter).pipe(catchError(error => {
           return throwError(error)
         }), tap(result => {
           if (result) {

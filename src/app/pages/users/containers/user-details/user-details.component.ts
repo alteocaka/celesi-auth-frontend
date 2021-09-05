@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
-import { forkJoin, throwError } from 'rxjs';
+import { catchError, debounceTime, map, pluck, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, throwError } from 'rxjs';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -11,6 +11,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+
+  filter = '';
 
   paginator: { page: number; count: number; total: number; pageCount: number } = {
     page: 1,
@@ -41,6 +43,23 @@ export class UserDetailsComponent implements OnInit {
     })
 
   )
+
+
+
+
+  constructor(
+    private usersService: UsersService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+  }
+
+  handleFilterChange(filter: string): void {
+    if(!filter) {
+      return;
+    }
+    console.log(filter)
+  };
 
   exportexcel(): void {
     /* table id is passed over here */
@@ -77,12 +96,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
 
-  constructor(
-    private usersService: UsersService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-  }
+
 
   ngOnInit(): void {
   }

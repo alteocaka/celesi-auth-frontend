@@ -8,7 +8,7 @@
       <th>Opsionet</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-dat>
+  <ng-template  pTemplate="body" let-dat>
     <tr>
       <td>{{ dat.id }}</td>
       <td>{{ dat.username }}</td>
@@ -52,6 +52,11 @@
       </td>
     </tr>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td>No data found</td>
+    </tr>
+  </ng-template>
 </p-table>
 <p-paginator
   *ngIf="paginator"
@@ -62,4 +67,4 @@
   [rowsPerPageOptions]="[10, 20, 30]"
 >
 </p-paginator>
-<!--{{paginator.total}}-->
+{{data.length}}
