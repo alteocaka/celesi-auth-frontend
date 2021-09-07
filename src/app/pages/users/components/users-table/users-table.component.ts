@@ -13,6 +13,7 @@ export class UsersTableComponent implements OnInit {
   @Output() rowClicked = new EventEmitter();
   @Output() paginatorChanged = new EventEmitter();
   @Output() deleteClicked = new EventEmitter();
+  @Output() excelClicked = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

@@ -93,7 +93,7 @@ export class UserProfileComponent implements OnInit {
 
   downloadCSV(id: any): void {
     this.usersService.getUserDaysCSV(id).pipe(take(1)).subscribe(res => {
-      saveAs(res, 'download.csv');
+      saveAs(res, 'user-data.csv');
     })
   }
 

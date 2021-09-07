@@ -3,7 +3,7 @@
     <h1 class="p-text-light p-p-4">Profili im</h1>
     <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
     <button
-      (click)="exportexcel()"
+      (click)="downloadCSV(userInformation.data[0].user.id)"
       class="p-mt-3 p-button-success p-button-rounded"
       type="button"
       pButton
@@ -20,7 +20,7 @@
     (rowClicked)="handleRowClicked($event)"
     (paginatorChanged)="handlePaginatorChange($event)"
   ></app-user-profile-days-table>
-  <button (click)="downloadCSV(userInformation.data[0].user.id)">Shkarko</button>
+  <!-- <button (click)="downloadCSV(userInformation.data[0].user.id)">Shkarko</button> -->
 </ng-container>
 <ng-template #loading>
   <app-loading></app-loading>
