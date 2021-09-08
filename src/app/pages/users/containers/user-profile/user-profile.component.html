@@ -1,4 +1,4 @@
-<ng-container *ngIf="userInformation$ | async as userInformation  else loading">
+<ng-container *ngIf="days$ | async as userInformation  else loading">
   <div class="p-d-flex p-align-center">
     <h1 class="p-text-light p-p-4">Profili im</h1>
     <p-button class="p-ml-2" label="Kthehu" icon="pi pi-arrow-left" routerLink="/" iconPos="left"></p-button>
@@ -15,7 +15,7 @@
 <!--    <pre>{{userInformation | json }}</pre>-->
   </div>
   <app-user-profile-days-table
-    [days]="userInformation "
+    [days]="userInformation"
     [paginator]="paginator"
     (rowClicked)="handleRowClicked($event)"
     (paginatorChanged)="handlePaginatorChange($event)"

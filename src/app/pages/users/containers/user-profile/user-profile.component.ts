@@ -25,8 +25,8 @@ export class UserProfileComponent implements OnInit {
     pluck('userId'),
     switchMap(id => this.usersService.getUserDetails(id)))
 
-  days$ = this.route.params.pipe(
-    pluck('userId'),
+  days$ = this.usersService.getUserProfile().pipe(
+    pluck('id'),
     switchMap(id => this.usersService.getUserDays(id, 1, 10)),
     tap(result => {
       if(result) {
@@ -61,8 +61,8 @@ export class UserProfileComponent implements OnInit {
 
   handlePaginatorChange(paginator: any): void {
     console.log(paginator);
-    this.days$ = this.route.params.pipe(
-      pluck('userId'),
+    this.days$ = this.usersService.getUserProfile().pipe(
+      pluck('id'),
       switchMap(id => this.usersService.getUserDays(id, paginator.page + 1, paginator.rows)),
       tap(result => {
         this.paginator = {
