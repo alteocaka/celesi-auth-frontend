@@ -56,14 +56,25 @@ export class DaysCheckinComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'A je i sigurt se do të konfirmosh orarin e fillimit të punës?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Sukses!',
-            detail: 'Orari u regjistrua, punë të mbarë.',
+        this.daysCheckInService.updateJobStart().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Orari u regjistrua, punë të mbarë',
+              },
+            ];
+            day
           },
-        ];
-        return this.daysCheckInService.updateJobStart();
+          (error) => { this.msgs = [
+            {
+              severity: 'error',
+              summary: 'I regjistruar!',
+              detail: 'Ju e keni regjistruar orarin e hyrjes për sot!',
+            },
+          ];}
+        );
       },
       reject: () => {
         this.msgs = [

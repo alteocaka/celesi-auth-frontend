@@ -32,9 +32,8 @@ export class DaysCheckinService {
 
   // Update Job Start Method
   updateJobStart() {
-    this.http
+    return this.http
       .patch(`${this.API}/days/update/job_start`, null)
-      .subscribe((day) => day);
   }
 
   // Update Break Start Method
