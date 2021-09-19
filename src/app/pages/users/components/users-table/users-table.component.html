@@ -50,6 +50,14 @@
           icon="pi pi-file-excel"
           class="p-button-rounded p-button-success p-button-text"
         ></button>
+        <button
+          pButton
+          pRipple
+          (click)="deleteDaysClicked.emit(dat.id)"
+          type="button"
+          icon="pi pi-times"
+          class="p-button-rounded p-button-danger p-button-text"
+        ></button>
       </td>
     </tr>
   </ng-template>

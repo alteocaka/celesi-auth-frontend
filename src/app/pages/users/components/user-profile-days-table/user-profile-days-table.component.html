@@ -18,6 +18,7 @@
       <th field="job_finish">Job Finish</th>
       <th field="working_hours">Working Hours</th>
       <th field="working_hours">Conversion</th>
+      <th field="working_hours">Comment</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
@@ -30,6 +31,24 @@
       <td>{{ product.job_finish | date: 'mediumTime' }}</td>
       <td>{{ product.hours | toHours }} hours</td>
       <td>{{ product.hours | conversionPipe }} hours</td>
+      <td pEditableColumn>
+        <p-cellEditor>
+            <ng-template pTemplate="input">
+                <input #comment pInputText type="text" [(ngModel)]="product.comment">
+                <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-save"
+                (click) = "updateComment(product.id, comment.value)"
+                class="p-button-rounded p-button-success p-button-text"
+              ></button>
+            </ng-template>
+            <ng-template pTemplate="output">
+                {{ product.comment }}
+            </ng-template>
+        </p-cellEditor>
+    </td>
     </tr>
   </ng-template>
 </p-table>

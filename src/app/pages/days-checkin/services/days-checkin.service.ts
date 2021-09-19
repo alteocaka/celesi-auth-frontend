@@ -26,9 +26,25 @@ export class DaysCheckinService {
     return this.http.get(`${this.API}/users/${id}?join=days`);
   }
 
+  // Method for deleting user's days
+  delteOneUserDays(id: number){
+    return this.http.delete(`${this.API}/days/delete-days/${id}`)
+  }
+
+  // Method for deleting all days
+  delteAllDays(){
+    return this.http.delete(`${this.API}/days/delete/all`)
+  }
+
   // ****************************************
   // Methods for updating the day properties:
   // ****************************************
+
+  // Update day's comment:
+  updateComment(id: any, payload: any){
+    return this.http
+      .patch(`${this.API}/days/${id}`, {"comment": payload})
+  }
 
   // Update Job Start Method
   updateJobStart() {
