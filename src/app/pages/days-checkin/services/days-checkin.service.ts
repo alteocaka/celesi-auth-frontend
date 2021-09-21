@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DaysCheckinService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private readonly API = environment.api;
 
@@ -27,12 +27,12 @@ export class DaysCheckinService {
   }
 
   // Method for deleting user's days
-  delteOneUserDays(id: number){
+  delteOneUserDays(id: number) {
     return this.http.delete(`${this.API}/days/delete-days/${id}`)
   }
 
   // Method for deleting all days
-  delteAllDays(){
+  delteAllDays() {
     return this.http.delete(`${this.API}/days/delete/all`)
   }
 
@@ -41,9 +41,9 @@ export class DaysCheckinService {
   // ****************************************
 
   // Update day's comment:
-  updateComment(id: any, payload: any){
+  updateComment(id: any, payload: any) {
     return this.http
-      .patch(`${this.API}/days/${id}`, {"comment": payload})
+      .patch(`${this.API}/days/${id}`, { "comment": payload })
   }
 
   // Update Job Start Method
@@ -54,22 +54,19 @@ export class DaysCheckinService {
 
   // Update Break Start Method
   updateBreakStart() {
-    this.http
+    return this.http
       .patch(`${this.API}/days/update/break_start`, null)
-      .subscribe((day) => day);
   }
 
   // Update Break Finish Method
   updateBreakFinish() {
-    this.http
+    return this.http
       .patch(`${this.API}/days/update/break_finish`, null)
-      .subscribe((day) => day);
   }
 
   // Update Job Finish Method
   updateJobFinish() {
-    this.http
+    return this.http
       .patch(`${this.API}/days/update/job_finish`, null)
-      .subscribe((day) => day);
   }
 }

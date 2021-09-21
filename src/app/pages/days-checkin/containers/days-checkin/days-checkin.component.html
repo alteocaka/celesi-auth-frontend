@@ -2,51 +2,18 @@
   <div class="wrapper">
     <p-confirmDialog #cd header="Konfirmo" icon="pi pi-exclamation-triangle">
       <ng-template pTemplate="footer">
-        <button
-          type="button"
-          pButton
-          icon="pi pi-times"
-          label="Po"
-          (click)="cd.accept()"
-        ></button>
-        <button
-          type="button"
-          pButton
-          icon="pi pi-check"
-          label="Jo"
-          (click)="cd.reject()"
-        ></button>
+        <button type="button" pButton icon="pi pi-times" label="Po" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Jo" (click)="cd.reject()"></button>
       </ng-template>
     </p-confirmDialog>
     <h1>Hello {{user.username}}!</h1>
-    <button
-      class="p-mr-3"
-      (click)="confirmJobStart()"
-      pButton
-      icon="pi pi-clock"
-      label="Job Start"
-    ></button>
-    <button
-      class="p-mr-3"
-      (click)="confirmBreakStart()"
-      pButton
-      icon="pi pi-clock"
-      label="Break Start"
-    ></button>
-    <button
-      class="p-mr-3"
-      (click)="confirmBreakFinish()"
-      pButton
-      icon="pi pi-clock"
-      label="Break Finish"
-    ></button>
-    <button
-      (click)="confirmJobFinish()"
-      pButton
-      icon="pi pi-clock"
-      label="Job Finish"
-    ></button>
-    <p-messages [value]="msgs"></p-messages>
+    <button class="p-mr-3" (click)="confirmJobStart()" pButton icon="pi pi-clock" label="Job Start"></button>
+    <button class="p-mr-3" (click)="confirmBreakStart()" pButton icon="pi pi-clock" label="Break Start"></button>
+    <button class="p-mr-3" (click)="confirmBreakFinish()" pButton icon="pi pi-clock" label="Break Finish"></button>
+    <button (click)="confirmJobFinish()" pButton icon="pi pi-clock" label="Job Finish"></button>
+    <div class="p-pt-4" *ngIf="user.role === 'admin'">
+      <button class="p-button-success" style="width: 200px;" (click)="confirmJobFinish()" pButton icon="pi pi-calendar" label="Client Meeting"></button>
+    </div>
+    <p-messages [style]="{'width': '35%', 'margin': 'auto'}" [value]="msgs"></p-messages>
   </div>
 </div>
-

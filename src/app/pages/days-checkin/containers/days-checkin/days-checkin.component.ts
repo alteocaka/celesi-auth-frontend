@@ -15,7 +15,7 @@ export class DaysCheckinComponent implements OnInit {
     private daysCheckInService: DaysCheckinService,
     private confirmationService: ConfirmationService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   display: any;
   username: any;
@@ -67,13 +67,15 @@ export class DaysCheckinComponent implements OnInit {
             ];
             day
           },
-          (error) => { this.msgs = [
-            {
-              severity: 'error',
-              summary: 'I regjistruar!',
-              detail: 'Ju e keni regjistruar orarin e hyrjes për sot!',
-            },
-          ];}
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Ju e keni regjistruar orarin e hyrjes për sot!',
+              },
+            ];
+          }
         );
       },
       reject: () => {
@@ -93,14 +95,27 @@ export class DaysCheckinComponent implements OnInit {
       message:
         'A je i sigurt se do të konfirmosh orarin e fillimit të pushimit?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Sukses!',
-            detail: 'Orari u regjistrua, pushim të mbarë.',
+        this.daysCheckInService.updateBreakStart().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Orari u regjistrua, punë të mbarë',
+              },
+            ];
+            day
           },
-        ];
-        return this.daysCheckInService.updateBreakStart();
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Ju e keni regjistruar orarin e fillimit të pushimit për sot!',
+              },
+            ];
+          }
+        );
       },
       reject: () => {
         this.msgs = [
@@ -119,14 +134,27 @@ export class DaysCheckinComponent implements OnInit {
       message:
         'A je i sigurt se do të konfirmosh orarin e mbarimit të pushimit?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Sukses!',
-            detail: 'Orari u regjistrua, punë të mbarë.',
+        this.daysCheckInService.updateBreakFinish().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Orari u regjistrua, punë të mbarë',
+              },
+            ];
+            day
           },
-        ];
-        return this.daysCheckInService.updateBreakFinish();
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Ju e keni regjistruar orarin e mbarimit të pushimit për sot!',
+              },
+            ];
+          }
+        );
       },
       reject: () => {
         this.msgs = [
@@ -144,14 +172,27 @@ export class DaysCheckinComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'A je i sigurt se do të konfirmosh orarin e mbarimit të punës?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Sukses!',
-            detail: 'Orari u regjistrua, ia kalofsh mirë.',
+        this.daysCheckInService.updateJobFinish().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Orari u regjistrua, punë të mbarë',
+              },
+            ];
+            day
           },
-        ];
-        return this.daysCheckInService.updateJobFinish();
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Ju e keni regjistruar orarin e mbarimit të punës për sot!',
+              },
+            ];
+          }
+        );
       },
       reject: () => {
         this.msgs = [
@@ -164,4 +205,10 @@ export class DaysCheckinComponent implements OnInit {
       },
     });
   }
+
+  confirmMeeting(){
+    return;
+  }
+  confirmMeetingStart(){}
+  confirmMeetingFinish(){}
 }
