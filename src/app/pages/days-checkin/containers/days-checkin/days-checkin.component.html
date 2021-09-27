@@ -12,7 +12,9 @@
     <button class="p-mr-3" (click)="confirmBreakFinish()" pButton icon="pi pi-clock" label="Break Finish"></button>
     <button (click)="confirmJobFinish()" pButton icon="pi pi-clock" label="Job Finish"></button>
     <div class="p-pt-4" *ngIf="user.role === 'user_sales'">
-      <button class="p-button-success" style="width: 200px;" (click)="confirmJobFinish()" pButton icon="pi pi-calendar" label="Client Meeting"></button>
+      <!-- <button class="p-button-success" style="width: 200px;" pButton icon="pi pi-calendar" label="Client Meeting"></button> -->
+      <button (click)="confirmMeetingStart()" class="p-button-success" style="width: 200px;" pButton icon="pi pi-calendar" label="Meeting Start"></button>
+      <button (click)="confirmMeetingFinish()" class="p-button-success" style="width: 200px;" pButton icon="pi pi-calendar" label="Meeting Finish"></button>
     </div>
     <p-messages [style]="{'width': '35%', 'margin': 'auto'}" [value]="msgs"></p-messages>
   </div>

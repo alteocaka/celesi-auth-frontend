@@ -7,6 +7,7 @@ import { MessagesModule } from 'primeng/messages';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
 const routes: Routes = [ {
@@ -22,8 +23,8 @@ const routes: Routes = [ {
     MessagesModule,
     ButtonModule,
     InputTextModule,
-
     ConfirmDialogModule,
+    OverlayPanelModule,
     RouterModule.forChild(routes)
   ],
   exports: [],

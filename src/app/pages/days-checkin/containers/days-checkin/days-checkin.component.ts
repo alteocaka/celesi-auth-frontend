@@ -207,9 +207,10 @@ export class DaysCheckinComponent implements OnInit {
     });
   }
 
-  confirmMeeting(){
-    return;
+  confirmMeetingStart(){
+    return this.daysCheckInService.updateMeetingStart().subscribe(day => {return day});
   }
-  confirmMeetingStart(){}
-  confirmMeetingFinish(){}
+  confirmMeetingFinish(){
+    return this.daysCheckInService.updateMeetingFinish().subscribe(day => {return day});
+  }
 }
