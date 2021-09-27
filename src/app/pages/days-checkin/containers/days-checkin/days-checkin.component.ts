@@ -27,6 +27,7 @@ export class DaysCheckinComponent implements OnInit {
 
     this.authService.getLoggedInUser().subscribe((user: any) => {
       this.user = user;
+      console.log(user);
     });
 
     return this.daysCheckInService.createDay();
