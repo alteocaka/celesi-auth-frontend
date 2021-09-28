@@ -69,4 +69,16 @@ export class DaysCheckinService {
     return this.http
       .patch(`${this.API}/days/update/job_finish`, null)
   }
+
+  // Update Meeting Start Method
+  updateMeetingStart() {
+    return this.http
+      .patch(`${this.API}/days/update/meeting_start`, null)
+  }
+
+  // Update Meeting Finish Method
+  updateMeetingFinish() {
+    return this.http
+      .patch(`${this.API}/days/update/meeting_finish`, null)
+  }
 }

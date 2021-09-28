@@ -32,6 +32,14 @@ export class DaysCheckinComponent implements OnInit {
 
     return this.daysCheckInService.createDay();
   }
+  returnCurrentTime() {
+    var d = new Date,
+      dformat =
+        [d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()].join(':');
+    return dformat;
+  }
 
   getUserData() {
     return this.authService.getLoggedInUser().subscribe((response: any) => {
@@ -62,8 +70,8 @@ export class DaysCheckinComponent implements OnInit {
             this.msgs = [
               {
                 severity: 'success',
-                summary: 'Sukses!',
-                detail: 'Orari u regjistrua, punë të mbarë',
+                summary: 'Success!',
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, punë të mbarë',
               },
             ];
             day
@@ -102,7 +110,11 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
+<<<<<<< HEAD
                 detail: 'Orari u regjistrua, punë të mbarë',
+=======
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, pushim të mbarë!',
+>>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -141,7 +153,11 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
+<<<<<<< HEAD
                 detail: 'Orari u regjistrua, punë të mbarë',
+=======
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, punë të mbarë!',
+>>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -179,7 +195,11 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
+<<<<<<< HEAD
                 detail: 'Orari u regjistrua, punë të mbarë',
+=======
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, ia kalofsh mirë!',
+>>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -207,9 +227,18 @@ export class DaysCheckinComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
   confirmMeeting(){
     return;
   }
   confirmMeetingStart(){}
   confirmMeetingFinish(){}
+=======
+  confirmMeetingStart() {
+    return this.daysCheckInService.updateMeetingStart().subscribe(day => { return day });
+  }
+  confirmMeetingFinish() {
+    return this.daysCheckInService.updateMeetingFinish().subscribe(day => { return day });
+  }
+>>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
 }
