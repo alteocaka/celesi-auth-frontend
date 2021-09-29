@@ -110,11 +110,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-<<<<<<< HEAD
-                detail: 'Orari u regjistrua, punë të mbarë',
-=======
                 detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, pushim të mbarë!',
->>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -153,11 +149,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-<<<<<<< HEAD
-                detail: 'Orari u regjistrua, punë të mbarë',
-=======
                 detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, punë të mbarë!',
->>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -195,11 +187,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-<<<<<<< HEAD
-                detail: 'Orari u regjistrua, punë të mbarë',
-=======
                 detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, ia kalofsh mirë!',
->>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
               },
             ];
             day
@@ -227,18 +215,10 @@ export class DaysCheckinComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  confirmMeeting(){
-    return;
-  }
-  confirmMeetingStart(){}
-  confirmMeetingFinish(){}
-=======
   confirmMeetingStart() {
     return this.daysCheckInService.updateMeetingStart().subscribe(day => { return day });
   }
   confirmMeetingFinish() {
     return this.daysCheckInService.updateMeetingFinish().subscribe(day => { return day });
   }
->>>>>>> af975d2beae81afbfd190bf22c7632b6dd95c3ee
 }
