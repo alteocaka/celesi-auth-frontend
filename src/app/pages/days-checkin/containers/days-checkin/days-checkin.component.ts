@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ConfirmationService, Message } from 'primeng/api';
 import { DaysCheckinService } from '../../services/days-checkin.service';
 import { AuthService } from '../../../../core/auth/auth.service';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-days-checkin',
@@ -21,9 +22,30 @@ export class DaysCheckinComponent implements OnInit {
   username: any;
   msgs: Message[] = [];
   user: any = null;
+  items!: MenuItem[];
 
   ngOnInit(): void {
     // this.authService.currentUserValue1();
+
+    this.items = [
+      {label: 'Meeting'},
+      {
+      items: [{
+          label: 'Meeting Start',
+          icon: 'pi pi-clock',
+          command: () => {
+              this.confirmMeetingStart()
+          }
+      },
+      {
+          label: 'Meeting Finish',
+          icon: 'pi pi-clock',
+          command: () => {
+              this.confirmMeetingFinish()
+          }
+      }
+      ]},
+  ];
 
     this.authService.getLoggedInUser().subscribe((user: any) => {
       this.user = user;
@@ -31,6 +53,14 @@ export class DaysCheckinComponent implements OnInit {
     });
 
     return this.daysCheckInService.createDay();
+  }
+  returnCurrentTime() {
+    var d = new Date,
+      dformat =
+        [d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()].join(':');
+    return dformat;
   }
 
   getUserData() {
@@ -62,8 +92,8 @@ export class DaysCheckinComponent implements OnInit {
             this.msgs = [
               {
                 severity: 'success',
-                summary: 'Sukses!',
-                detail: 'Orari u regjistrua, punë të mbarë',
+                summary: 'Success!',
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, punë të mbarë',
               },
             ];
             day
@@ -102,7 +132,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-                detail: 'Orari u regjistrua, punë të mbarë',
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, pushim të mbarë!',
               },
             ];
             day
@@ -141,7 +171,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-                detail: 'Orari u regjistrua, punë të mbarë',
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, punë të mbarë!',
               },
             ];
             day
@@ -179,7 +209,7 @@ export class DaysCheckinComponent implements OnInit {
               {
                 severity: 'success',
                 summary: 'Sukses!',
-                detail: 'Orari u regjistrua, punë të mbarë',
+                detail: 'Orari ' + this.returnCurrentTime() + ' u regjistrua, ia kalofsh mirë!',
               },
             ];
             day
@@ -207,10 +237,78 @@ export class DaysCheckinComponent implements OnInit {
     });
   }
 
-  confirmMeetingStart(){
-    return this.daysCheckInService.updateMeetingStart().subscribe(day => {return day});
+  confirmMeetingStart() {
+    this.confirmationService.confirm({
+      message: 'A je i sigurt se do të konfirmosh orarin e fillimit të takimit?',
+      accept: () => {
+        this.daysCheckInService.updateMeetingStart().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Fillimi i takimit ' +'(' + this.returnCurrentTime() + ')' + ' u regjistrua, paç fat!',
+              },
+            ];
+            day
+          },
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Ju keni ende një takim aktiv! Klikoni fillimisht "Meeting Finish", më pas regjistroni një të ri.',
+              },
+            ];
+          }
+        );
+      },
+      reject: () => {
+        this.msgs = [
+          {
+            severity: 'warn',
+            summary: 'Në pritje!',
+            detail: 'Orari në pritje!',
+          },
+        ];
+      },
+    });
   }
-  confirmMeetingFinish(){
-    return this.daysCheckInService.updateMeetingFinish().subscribe(day => {return day});
+  confirmMeetingFinish() {
+    this.confirmationService.confirm({
+      message: 'A je i sigurt se do të konfirmosh orarin e mbarimit të takimit?',
+      accept: () => {
+        this.daysCheckInService.updateMeetingFinish().subscribe(
+          (day) => {
+            this.msgs = [
+              {
+                severity: 'success',
+                summary: 'Sukses!',
+                detail: 'Takimi u mbyll! ' +'(' + this.returnCurrentTime() + ')' + ' Mund të regjistrosh një tjetër në çdo moment!',
+              },
+            ];
+            day
+          },
+          (error) => {
+            this.msgs = [
+              {
+                severity: 'error',
+                summary: 'I regjistruar!',
+                detail: 'Nuk ka takime aktive për momentin!',
+              },
+            ];
+          }
+        );
+      },
+      reject: () => {
+        this.msgs = [
+          {
+            severity: 'warn',
+            summary: 'Në pritje!',
+            detail: 'Orari në pritje!',
+          },
+        ];
+      },
+    });
   }
 }
